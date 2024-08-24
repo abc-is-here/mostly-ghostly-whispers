@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://uwwgdoqwn1it"]
+[gd_scene load_steps=8 format=3 uid="uid://uwwgdoqwn1it"]
 
 [ext_resource type="PackedScene" uid="uid://nrp6cx128ec3" path="res://scenes/player.tscn" id="1_2bq0x"]
+[ext_resource type="PackedScene" uid="uid://hi3sjrn0rt1v" path="res://scenes/ui.tscn" id="2_ho23j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy0qj"]
 sky_top_color = Color(0.288054, 0.453071, 0.629746, 1)
@@ -27,6 +28,7 @@ environment = SubResource("Environment_rxcke")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="floor" type="StaticBody3D" parent="."]
@@ -67,3 +69,5 @@ shape = SubResource("BoxShape3D_tffnn")
 
 [node name="Player" parent="." instance=ExtResource("1_2bq0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="UI" parent="." instance=ExtResource("2_ho23j")]
