@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://uwwgdoqwn1it"]
+[gd_scene load_steps=17 format=3 uid="uid://uwwgdoqwn1it"]
 
 [ext_resource type="PackedScene" uid="uid://nrp6cx128ec3" path="res://scenes/player.tscn" id="1_2bq0x"]
 [ext_resource type="Material" uid="uid://dlkdulrqiau3f" path="res://material/wall.tres" id="1_87rs5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4xqo07rdsc4o" path="res://scenes/light.tscn" id="5_wmaci"]
 [ext_resource type="PackedScene" uid="uid://dkb3el1gd14du" path="res://scenes/table.tscn" id="6_3vwh6"]
 [ext_resource type="PackedScene" uid="uid://bheuimpcca05d" path="res://scenes/flashlight.tscn" id="7_0aiqi"]
+[ext_resource type="AudioStream" uid="uid://b8koes1pbqdib" path="res://sounds/ambience.mp3" id="8_yf3hh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy0qj"]
 sky_top_color = Color(0.288054, 0.453071, 0.629746, 1)
@@ -18,8 +19,11 @@ sky_material = SubResource("ProceduralSkyMaterial_gy0qj")
 
 [sub_resource type="Environment" id="Environment_rxcke"]
 background_mode = 1
+background_color = Color(0.174028, 0.174028, 0.174028, 1)
 sky = SubResource("Sky_eqc6p")
 tonemap_mode = 3
+tonemap_exposure = 1.91
+tonemap_white = 16.0
 glow_enabled = true
 glow_bloom = 1.0
 fog_enabled = true
@@ -29,6 +33,67 @@ fog_density = 0.0001
 [sub_resource type="BoxMesh" id="BoxMesh_g7qgf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tffnn"]
+
+[sub_resource type="Animation" id="Animation_adjh2"]
+resource_name = "beginning"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cutscene_cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.8, -4.618), Vector3(0, 2.17597, -5.47752)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cutscene_cam:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(0.29147, 4.01775, 0), Vector3(0.29147, 1.97222, 0), Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rp23q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cutscene_cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.8, -4.618)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cutscene_cam:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_06fvo"]
+_data = {
+"RESET": SubResource("Animation_rp23q"),
+"beginning": SubResource("Animation_adjh2")
+}
 
 [node name="level" type="Node3D"]
 
@@ -217,3 +282,44 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.862
 
 [node name="Flashlight" parent="." instance=ExtResource("7_0aiqi")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.66024, 1.5377, -39.9219)
+
+[node name="ambience sounds" type="Node3D" parent="."]
+
+[node name="ambience" type="AudioStreamPlayer3D" parent="ambience sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6888, 0, 4.78628)
+stream = ExtResource("8_yf3hh")
+autoplay = true
+max_distance = 60.0
+
+[node name="ambience2" type="AudioStreamPlayer3D" parent="ambience sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9978, 0, -17.9569)
+stream = ExtResource("8_yf3hh")
+pitch_scale = 0.8
+autoplay = true
+max_distance = 60.0
+
+[node name="ambience3" type="AudioStreamPlayer3D" parent="ambience sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2834, 0, 68.1683)
+stream = ExtResource("8_yf3hh")
+pitch_scale = 0.6
+autoplay = true
+max_distance = 60.0
+
+[node name="ambience4" type="AudioStreamPlayer3D" parent="ambience sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2834, 0, -55.4571)
+stream = ExtResource("8_yf3hh")
+pitch_scale = 0.4
+autoplay = true
+max_distance = 60.0
+
+[node name="beginning_cutscenes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.1063)
+
+[node name="cutscene_cam" type="Camera3D" parent="beginning_cutscenes"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.8, -4.618)
+far = 20.0
+
+[node name="cutscene_player" type="AnimationPlayer" parent="beginning_cutscenes"]
+libraries = {
+"": SubResource("AnimationLibrary_06fvo")
+}
