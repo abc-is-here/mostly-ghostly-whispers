@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uwwgdoqwn1it"]
+[gd_scene load_steps=13 format=3 uid="uid://uwwgdoqwn1it"]
 
 [ext_resource type="PackedScene" uid="uid://nrp6cx128ec3" path="res://scenes/player.tscn" id="1_2bq0x"]
 [ext_resource type="Material" uid="uid://dlkdulrqiau3f" path="res://material/wall.tres" id="1_87rs5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://hi3sjrn0rt1v" path="res://scenes/ui.tscn" id="2_ho23j"]
 [ext_resource type="PackedScene" uid="uid://c4xqo07rdsc4o" path="res://scenes/light.tscn" id="5_wmaci"]
 [ext_resource type="PackedScene" uid="uid://dkb3el1gd14du" path="res://scenes/table.tscn" id="6_3vwh6"]
+[ext_resource type="PackedScene" uid="uid://bheuimpcca05d" path="res://scenes/flashlight.tscn" id="7_0aiqi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy0qj"]
 sky_top_color = Color(0.288054, 0.453071, 0.629746, 1)
@@ -43,6 +44,7 @@ transform = Transform3D(-1, 0, -0.000261696, 0, 1, 0, 0.000261696, 0, -1, 0, 1.4
 
 [node name="floor" type="StaticBody3D" parent="Floors and walls"]
 transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 90.6001, 0, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floors and walls/floor"]
 material_override = ExtResource("1_l81lb")
@@ -53,6 +55,7 @@ shape = SubResource("BoxShape3D_tffnn")
 
 [node name="floor2" type="StaticBody3D" parent="Floors and walls"]
 transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 90.6001, 0, 5.2888, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floors and walls/floor2"]
 material_override = ExtResource("1_l81lb")
@@ -211,3 +214,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.64959, 37.5752)
 
 [node name="Table" parent="." instance=ExtResource("6_3vwh6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.8623, 1.32605, -39.2079)
+
+[node name="Flashlight" parent="." instance=ExtResource("7_0aiqi")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.66024, 1.5377, -39.9219)
