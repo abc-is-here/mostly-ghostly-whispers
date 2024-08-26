@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cagcy6i38iiqf"]
+
+[ext_resource type="Material" uid="uid://gwn6lg3126f1" path="res://material/table.tres" id="1_l4glf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bnm75"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ces24"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0rhr5"]
+radial_segments = 16
+
+[sub_resource type="Animation" id="Animation_ckclt"]
+resource_name = "open"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8awx"]
+_data = {
+"open": SubResource("Animation_ckclt")
+}
+
+[node name="door" type="Node3D"]
+
+[node name="hinge" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745308, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.745308, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hinge/StaticBody3D"]
+shape = SubResource("BoxShape3D_bnm75")
+
+[node name="door_base" type="MeshInstance3D" parent="hinge/StaticBody3D"]
+transform = Transform3D(1.46802, 0, 0, 0, 2.74604, 0, 0, 0, 0.184988, 0, 0, 0)
+material_override = ExtResource("1_l4glf")
+mesh = SubResource("BoxMesh_ces24")
+skeleton = NodePath("../../..")
+
+[node name="handle" type="MeshInstance3D" parent="hinge/StaticBody3D"]
+transform = Transform3D(0.184555, 0, 0, 0, -9.75785e-09, -0.184453, 0, 0.223234, -8.06271e-09, 0.601207, 0, -0.00903644)
+mesh = SubResource("CylinderMesh_0rhr5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b8awx")
+}
